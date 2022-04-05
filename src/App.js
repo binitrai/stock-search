@@ -1,0 +1,21 @@
+import {Route, Routes, BrowserRouter} from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+import SearchPage from "./pages/SearchPage/SearchPage";
+import StockDetail from "./pages/StockDetail/StockDetail";
+import Navigation from "./components/Layout/Navigation/Navigation";
+
+function App() {
+  return (
+      <BrowserRouter>
+        <Navigation />
+        <Layout>
+          <Routes>
+            <Route  path="/" element={<SearchPage />}/>
+            <Route  path="/detail/:symbol" element={<StockDetail />}/>
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+  );
+}
+
+export default App;

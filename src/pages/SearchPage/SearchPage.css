@@ -1,0 +1,41 @@
+
+.SearchContainer {
+    display: flex;
+    width:100%;
+    margin : 10px;
+    align-items: center;
+}
+.SearchInputText {
+    width:90%;
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.SearchInput {
+    width:100%;
+}
+
+.SearchContainer button{
+    margin-left :10px;
+    height: 40px;
+    padding: 5px;
+    width : 70px;
+}
+.SuggestionItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 50%;
+    margin: 5px;
+    border-bottom: 1px solid grey;
+}
+.SuggestionItemAction a {
+    text-decoration: none;
+    width:50px;
+}
+
+.SuggestionItemAction button {
+    height :30px;
+    padding:5px;
+}

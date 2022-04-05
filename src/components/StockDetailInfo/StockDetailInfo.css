@@ -1,0 +1,30 @@
+.DetailCard {
+    width:90%;
+    padding : 20px;
+    margin: 20px;
+    border : 2px solid lightgray;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.Card {
+
+}
+
+.CardHeader {
+    padding : 10px;
+    border-bottom: 1px solid lightgray;
+    padding-left: 0px;
+    font-size: 18px;
+}
+
+.CardRow{
+    margin-bottom: 15px;
+}
+
+.CardRow.des {
+    line-height: 2;
+}
+.CardBody {
+    padding-top: 10px;
+    
+}
