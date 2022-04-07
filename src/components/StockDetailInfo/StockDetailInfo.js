@@ -3,8 +3,9 @@ import OverView from "./Overview";
 import CurrentPriceInfo from "./CurrentPriceInfo";
 import TimeSeries from "./TimeSeries";
 import useDataFetch from "../../utils/useDataFetch";
+import NoData from "../NoData";
+import Loader from "../Loader";
 
-import "./StockDetailInfo.css";
 
 function StockDetailInfo({symbol}) {
     const {data = {}, loading, error} = useDataFetch("detail", symbol);
@@ -16,11 +17,11 @@ function StockDetailInfo({symbol}) {
     const Symbol = apiData["Symbol"];
 
     if (noData) {
-        return <h2>No Data Found</h2>
+        return <NoData />
     }
 
     if (loading) {
-        return <h2>Loading</h2>
+        return <Loader /> 
     }
 
     return (

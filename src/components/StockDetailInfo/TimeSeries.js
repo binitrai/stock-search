@@ -1,6 +1,27 @@
 import React from "react";
+import { Chart } from "react-google-charts";
+
 import useDataFetch from "../../utils/useDataFetch";
-import LineChart from "./LineChart";
+import DataCard from "../Card/DataCard";
+
+function getData(data) {
+    const d = data["Time Series (Daily)"] || {};
+    const chData = Object.keys(d).map(item => {
+        const currItem = d[item];
+        const p = currItem["2. high"];
+        return [item, Number(p)]
+    })
+    chData.unshift(["Date", "Price"]);
+    return chData
+}
+
+
+const chartOptions = {
+  title: "Stock Prices",
+  curveType: "function",
+  legend: { position: "bottom" },
+};
+
 
 function TimeSeries({symbol}) {
     const {data, loading, error} = useDataFetch("dailyTrend", symbol);
@@ -8,28 +29,27 @@ function TimeSeries({symbol}) {
         noData,
         apiData
     } = data;
-
-    if (noData) {
-        return <h2>No Data Found</h2>
-    }
-
-    if (loading) {
-        return <h2>Loading...</h2>
-    }
-
+    
     return (
-        <section className="TimeSeries DetailCard">
-            <section className="Card">
-                <section className="CardHeader">
-                    <strong>Stock price chart</strong>
-                </section>
-                <section className="CardBody">
-                    {
-                        data["Time Series (Daily)"] && <LineChart data={apiData}/>
-                    }
-                </section>
-            </section>
-        </section>
+        <DataCard 
+            headerText="Stock price chart"
+            loading={loading}
+            noData={noData}
+            error={error}
+
+        >
+           {
+                apiData["Time Series (Daily)"] && 
+                
+                <Chart
+                        chartType="LineChart"
+                        width="100%"
+                        height="400px"
+                        data={getData(apiData)}
+                        options={chartOptions}
+                />
+           }
+        </DataCard>
     )
 }
 

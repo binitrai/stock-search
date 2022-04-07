@@ -1,40 +1,32 @@
 import React from "react";
+import DataCard from "../Card/DataCard";
+
+const dataToRender = {
+    "Name" : "Name",
+    "Description" : "Description",
+    "MarketCapitalization" : "Market Capitalization",
+    "PERatio" : "P/E Ratio",
+    "Currency" : "Currency"
+}
 
 function Overview({data, loading, error}) {
-    const {
-        Symbol,
-        Name,
-        Description,
-        MarketCapitalization,
-        PERatio,
-        Currency
-    } = data;
-    if (!Symbol) {
-        return (
-            <h2>No Data found</h2>
-        )
-    }
+    const {Symbol} = data;
+    console.log("Symbol", Symbol);
     return (
-        <section className="Overview DetailCard">
-            {loading ? "Loading Overview" : 
-               <section className="Card">
-                   <section className="CardHeader">
-                        <strong>Overview {Symbol}</strong>
-                   </section>
-                   <section className="CardBody">
-                        <div className="CardRow"><b>Name :</b> {Name}</div>
-                        <div className="CardRow des"><b>Description : </b> {Description}</div>
-                        <div className="CardRow"><b>Market Capitalization : </b>{MarketCapitalization}</div>
-                        <div className="CardRow"><b> P/E Ratio : </b>{PERatio}</div>
-                        <div className="CardRow"><b> Currency : </b>{Currency}</div>
-                   </section>
-               </section>
-            }
-            {
-                error && error
+        <DataCard 
+            headerText={`Overview ${Symbol}`}
+            loading={loading}
+            noData={!Symbol}
+            error={error}
 
+        >
+            {
+                Symbol &&
+                 Object.keys(dataToRender).map(row => {
+                    return <div key={row} className="CardRow"><b>{dataToRender[row]} :</b> {data[row]}</div>
+                })
             }
-        </section>
+        </DataCard>
     )
 }
 
