@@ -16,11 +16,9 @@
 
 .CardRow{
     margin-bottom: 15px;
-}
-
-.CardRow.des {
     line-height: 2;
 }
+
 .CardBody {
     padding-top: 10px;
     
