@@ -5,7 +5,7 @@ function Navigation() {
     return (
         <header className="AppHeader">
             <div className="AppLogo">
-                Stock search app
+                Stock Explorer
             </div>
         </header>
     )
