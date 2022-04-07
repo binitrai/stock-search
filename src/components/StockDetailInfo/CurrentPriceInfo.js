@@ -8,13 +8,12 @@ const dataToRender = {
 }
 
 function CurrentPriceInfo({symbol}) {
-    const {data, loading, error} = useDataFetch("currentInfo", symbol);
+    const {data, loading, error} = useDataFetch("currentInfo", symbol, 20000);
     const {
         noData,
-        apiData = {}
+        apiData = {},
     } = data;
     const CurrentPrice = apiData["Global Quote"];
-    console.log(CurrentPrice, "CurrentPrice");
     return (
         <DataCard 
             headerText="Current Price"
@@ -24,14 +23,19 @@ function CurrentPriceInfo({symbol}) {
 
         >
             { CurrentPrice && 
-                Object.keys(dataToRender).map(row => {
+            <>
+                 {Object.keys(dataToRender).map(row => {
                     return <div key={row} className="CardRow">
                                 <b>
                                     {dataToRender[row]} :
                                 </b> 
                                 {CurrentPrice[row]}
                             </div>
-                })
+                })}
+
+            
+               <div className="CardRow"><b>Last refreshed :</b> {new Date().toLocaleTimeString()}</div>
+               </>
             }
         </DataCard>
     )
